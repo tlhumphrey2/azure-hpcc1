@@ -22,7 +22,7 @@ variable "hostname" {
 
 variable "platform" {
   description = "hpcc platform to install"
-  default     = "7.6.36-1"
+  default     = "https://d2wulyp08c6njk.cloudfront.net/releases/CE-Candidate-7.6.36/bin/platform/hpccsystems-platform-community_7.6.36-1xenial_amd64.deb"
 }
 
 variable "location" {

@@ -1,18 +1,20 @@
-#!/bin/sh
-# Deploys a simple Apache webpage with kittens as a service.
+#!/bin/bash
+ThisDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+sshuser=`basename $ThisDir`
+: <<'ENDUSAGE'
+sudo install_hpcc.sh $path2platform
+ENDUSAGE
 
-# cd /tmp
-apt-get -y update > /dev/null 2>&1
-apt install -y apache2 > /dev/null 2>&1
+path2platform=$1
+echo "Inputted: path2platform=\"$path2platform\""
+HPCCPlatform=`basename $path2platform`
 
-cat << EOM > /var/www/html/index.html
-<html>
-  <head><title>Meow!</title></head>
-  <body style="background-image: linear-gradient(red,orange,yellow,green,blue,indigo,violet);">
-  <center><img src="http://placekitten.com/800/600"></img></center>
-  <marquee><h1>Meow World</h1></marquee>
-  </body>
-</html>
-EOM
+#install hpcc
+echo "install hpcc"
+mkdir hpcc
+cd hpcc
+echo "wget $path2platform"
+wget $path2platform
 
-echo "Your demo is now ready."
+echo "apt-get install $HPCCPlatform -y"
+apt-get install $HPCCPlatform -y

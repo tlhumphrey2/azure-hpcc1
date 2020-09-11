@@ -170,7 +170,8 @@ resource "azurerm_virtual_machine" "site" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /home/${var.admin_username}/install_hpcc.sh",
-      "sudo /home/${var.admin_username}/install_hpcc.sh",
+      "sudo /home/${var.admin_username}/install_hpcc.sh ${var.platform}",
+      "sudo /opt/HPCCSystems/sbin/hpcc-run.sh -a hpcc-init start"
     ]
 
     connection {
