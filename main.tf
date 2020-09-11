@@ -71,7 +71,7 @@ resource "azurerm_network_security_group" "tf-guide-sg" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "80"
+    destination_port_range     = "8010"
     source_address_prefix      = "${var.source_network}"
     destination_address_prefix = "*"
   }
