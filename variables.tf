@@ -7,7 +7,7 @@
 
 variable "resource_group" {
   description = "The name of your Azure Resource Group."
-  default     = "Terraform-Azure-Beginners"
+  default     = "tlh-hpcc-cluster-rg"
 }
 
 variable "prefix_cluster_name" {
