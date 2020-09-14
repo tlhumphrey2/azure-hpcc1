@@ -168,11 +168,11 @@ resource "azurerm_virtual_machine" "cluster-node" {
   # This shell script starts our Apache server and prepares the demo environment.
   provisioner "remote-exec" {
     inline = [
-      "#Setup logging and having everything goto /var/log/user-data.log",
+      "#Setup logging and having everything goto /home/adminuser/user-data.log",
       "sudo su -",
       "exec 3>&1 4>&2",
       "trap 'exec 2>&4 1>&3' 0 1 2 3",
-      "exec 1>/var/log/user-data.log 2>&1",
+      "exec 1>/home/adminuser/user-data.log 2>&1",
       "echo Add execution permissions to install_hpcc.sh",
       "chmod +x /home/${var.admin_username}/install_hpcc.sh",
       "echo DEBUG: install hpcc and all its dependences",

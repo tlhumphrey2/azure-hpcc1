@@ -7,7 +7,7 @@
 
 variable "resource_group" {
   description = "The name of your Azure Resource Group."
-  default     = "tlh-hpcc-cluster-rg"
+  default     = "tlh-hpcc-cluster-westus-rg"
 }
 
 variable "prefix_cluster_name" {
@@ -27,7 +27,7 @@ variable "platform" {
 
 variable "location" {
   description = "The region where the virtual network is created."
-  default     = "centralus"
+  default     = "westus"
 }
 
 variable "virtual_network_name" {
