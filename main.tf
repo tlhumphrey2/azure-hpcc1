@@ -177,7 +177,8 @@ resource "azurerm_virtual_machine" "cluster-node" {
       "chmod +x /home/${var.admin_username}/install_hpcc.sh",
       "echo DEBUG: install hpcc and all its dependences",
       "/home/${var.admin_username}/install_hpcc.sh ${var.platform}",
-      "/opt/HPCCSystems/sbin/hpcc-run.sh -a hpcc-init start"
+      "/opt/HPCCSystems/sbin/hpcc-run.sh -a hpcc-init start",
+      "exit"
     ]
 
     connection {

@@ -1,0 +1,13 @@
+all-files
+*.deb
+*.rpm
+*.backup
+*.disabled
+LICENSE
+hpcc/
+apply.log
+plan.log
+rmNonAscii.plt
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
