@@ -173,8 +173,9 @@ resource "azurerm_virtual_machine" "site" {
       "exec 3>&1 4>&2",
       "trap 'exec 2>&4 1>&3' 0 1 2 3",
       "exec 1>/var/log/user-data.log 2>&1",
-      "#Add execution permissions to install_hpcc.sh",
+      "echo Add execution permissions to install_hpcc.sh",
       "chmod +x /home/${var.admin_username}/install_hpcc.sh",
+      "echo DEBUG: install hpcc and all its dependences",
       "/home/${var.admin_username}/install_hpcc.sh ${var.platform}",
       "/opt/HPCCSystems/sbin/hpcc-run.sh -a hpcc-init start"
     ]
