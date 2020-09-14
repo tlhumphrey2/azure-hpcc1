@@ -62,17 +62,17 @@ variable "vm_size" {
 
 variable "image_publisher" {
   description = "Name of the publisher of the image (az vm image list)"
-  default     = "Canonical"
+  default     = "openLogic"
 }
 
 variable "image_offer" {
   description = "Name of the offer (az vm image list)"
-  default     = "UbuntuServer"
+  default     = "CentOS"
 }
 
 variable "image_sku" {
   description = "Image SKU to apply (az vm image list)"
-  default     = "16.04-LTS"
+  default     = "7.3"
 }
 
 variable "image_version" {

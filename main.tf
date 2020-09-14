@@ -4,8 +4,7 @@
 # This Terraform configuration will create the following:
 #
 # Resource group with a virtual network and subnet
-# An Ubuntu Linux server running Apache
-
+# An Centos Linux server running Apache
 ##############################################################################
 # * Shared infrastructure resources
 
@@ -50,7 +49,7 @@ resource "azurerm_subnet" "subnet" {
 }
 
 ##############################################################################
-# * Build an Ubuntu 16.04 Linux VM
+# * Build an Centos 8.2 Linux VM
 #
 # Now that we have a network, we'll deploy an Ubuntu 16.04 Linux server.
 # An Azure Virtual Machine has several components. In this example we'll build
@@ -58,7 +57,7 @@ resource "azurerm_subnet" "subnet" {
 # account and finally the VM itself. Terraform handles all the dependencies 
 # automatically, and each resource is named with user-defined variables.
 
-# Security group to allow inbound access on port 80 (http) and 22 (ssh)
+# Security group to allow inbound access on port 8010 and 22 (ssh)
 resource "azurerm_network_security_group" "tf-guide-sg" {
   name                = "${var.prefix_cluster_name}-sg"
   location            = "${var.location}"
@@ -120,8 +119,8 @@ resource "azurerm_public_ip" "tf-guide-pip" {
 # We use the shell provisioner to run a Bash script that configures Apache for 
 # the demo environment. Terraform supports several different types of 
 # provisioners including Bash, Powershell and Chef.
-resource "azurerm_virtual_machine" "site" {
-  name                = "${var.hostname}-site"
+resource "azurerm_virtual_machine" "cluster-node" {
+  name                = "${var.hostname}-cluster-node"
   location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.tf_azure_guide.name}"
   vm_size             = "${var.vm_size}"
@@ -155,7 +154,7 @@ resource "azurerm_virtual_machine" "site" {
 
   # It's easy to transfer files or templates using Terraform.
   provisioner "file" {
-    source      = "files/install_hpcc.sh"
+    source      = "files/centos_install_hpcc.sh"
     destination = "/home/${var.admin_username}/install_hpcc.sh"
 
     connection {
