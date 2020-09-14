@@ -170,11 +170,13 @@ resource "azurerm_virtual_machine" "site" {
   provisioner "remote-exec" {
     inline = [
       "#Setup logging and having everything goto /var/log/user-data.log",
-      "exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1",
+      "exec 3>&1 4>&2",
+      "trap 'exec 2>&4 1>&3' 0 1 2 3",
+      "exec 1>/var/log/user-data.log 2>&1",
       "#Add execution permissions to install_hpcc.sh",
       "chmod +x /home/${var.admin_username}/install_hpcc.sh",
-      "sudo /home/${var.admin_username}/install_hpcc.sh ${var.platform}",
-      "sudo /opt/HPCCSystems/sbin/hpcc-run.sh -a hpcc-init start"
+      "/home/${var.admin_username}/install_hpcc.sh ${var.platform}",
+      "/opt/HPCCSystems/sbin/hpcc-run.sh -a hpcc-init start"
     ]
 
     connection {
