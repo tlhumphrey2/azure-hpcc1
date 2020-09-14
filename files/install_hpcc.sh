@@ -8,6 +8,7 @@ ENDUSAGE
 path2platform=$1
 echo "Inputted: path2platform=\"$path2platform\""
 HPCCPlatform=`basename $path2platform`
+echo "HPCCPlatform=\"$HPCCPlatform\""
 
 #install hpcc
 echo "install hpcc"
@@ -16,5 +17,5 @@ cd hpcc
 echo "wget $path2platform"
 wget $path2platform
 
-echo "apt-get install $HPCCPlatform -y"
-apt-get install $HPCCPlatform -y
+echo "sudo dpkg -i $HPCCPlatform && sudo apt-get install -f"
+sudo dpkg -i $HPCCPlatform && sudo apt-get install -f
