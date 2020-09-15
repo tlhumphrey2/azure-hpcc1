@@ -60,6 +60,11 @@ variable "vm_size" {
   default     = "Standard_D2"
 }
 
+variable "disksize" {
+  description = "Specifies the size of the system disk (in GB)."
+  default     = "30"
+}
+
 variable "image_publisher" {
   description = "Name of the publisher of the image (az vm image list)"
   default     = "openLogic"

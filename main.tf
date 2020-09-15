@@ -140,6 +140,7 @@ resource "azurerm_virtual_machine" "cluster-node" {
     managed_disk_type = "Standard_LRS"
     caching           = "ReadWrite"
     create_option     = "FromImage"
+    disk_size_gb      = "${var.disksize}"
   }
 
   os_profile {
