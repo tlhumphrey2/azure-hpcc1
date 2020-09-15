@@ -177,8 +177,8 @@ resource "azurerm_virtual_machine" "cluster-node" {
       "echo Add execution permissions to install_hpcc.sh",
       "chmod +x /home/${var.admin_username}/install_hpcc.sh",
       "echo DEBUG: install hpcc and all its dependences",
-      "/home/${var.admin_username}/install_hpcc.sh ${var.platform}",
-      "sudo /opt/HPCCSystems/sbin/hpcc-run.sh -a hpcc-init start",
+      "/home/${var.admin_username}/install_hpcc.sh ${var.platform} ${var.admin_password}",
+      "echo ${var.admin_password} | sudo -S /opt/HPCCSystems/sbin/hpcc-run.sh -a hpcc-init start",
       "exit"
     ]
 
