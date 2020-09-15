@@ -111,7 +111,7 @@ resource "azurerm_public_ip" "tf-guide-pip" {
   name                         = "${var.prefix_cluster_name}-ip"
   location                     = "${var.location}"
   resource_group_name          = "${azurerm_resource_group.tf_azure_guide.name}"
-  public_ip_address_allocation = "Dynamic"
+  public_ip_address_allocation = "Static"
   domain_name_label            = "${var.hostname}"
 }
 

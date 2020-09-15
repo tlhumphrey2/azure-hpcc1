@@ -10,6 +10,6 @@ output "_instructions" {
   value = "This output contains plain text. You can add variables too."
 }
 
-output "esp public ip" {
+output "esp_public_ip" {
   value = "${azurerm_public_ip.tf-guide-pip.ip_address}"
 }
