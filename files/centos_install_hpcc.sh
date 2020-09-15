@@ -1,5 +1,4 @@
 #!/bin/bash
-sshuser=`basename $ThisDir`
 : <<'ENDUSAGE'
 sudo install_hpcc.sh $path2platform
 ENDUSAGE
